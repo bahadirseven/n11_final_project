@@ -30,7 +30,7 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-A basic spring boot mongodb application created with Spring Initializr.
+A basic spring boot application created with Spring Initializr.
 
 ### Built With
 * [Java](https://www.oracle.com/java/)
