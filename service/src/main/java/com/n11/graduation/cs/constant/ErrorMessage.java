@@ -6,7 +6,9 @@ public enum ErrorMessage {
     INVALID_PARAMETER("Invalid parameter found."),
     CREDIT_SCORE_NOT_FOUND_FOR_USER("Credit score not found for user."),
     SCORE_NOT_GENERATED("Unexpected error occured when generate credit score."),
-    CONSTRAINT_VIOLATION("Constraint violation occured when connected database.");
+    CONSTRAINT_VIOLATION("Constraint violation occured when connected database."),
+    UNEXPECTED_ERROR("Unexpected error ocured."),
+    DUPLICATE_ENTRY("Duplicate entry on database");
 
     private final String message;
 

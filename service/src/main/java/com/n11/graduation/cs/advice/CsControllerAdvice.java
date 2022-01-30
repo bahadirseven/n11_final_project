@@ -4,6 +4,7 @@ import com.n11.graduation.cs.constant.ErrorMessage;
 import com.n11.graduation.cs.dto.ErrorResponseDTO;
 import com.n11.graduation.cs.exception.CsEntityNotFoundException;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -50,5 +51,19 @@ public class CsControllerAdvice {
         log.error(exception.getMessage());
         ErrorResponseDTO response = new ErrorResponseDTO(ErrorMessage.CONSTRAINT_VIOLATION.getMessage());
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(value = DataIntegrityViolationException.class)
+    public ResponseEntity<ErrorResponseDTO> handleException(DataIntegrityViolationException exception) {
+        log.error(exception.getMessage());
+        ErrorResponseDTO response = new ErrorResponseDTO(ErrorMessage.DUPLICATE_ENTRY.getMessage());
+        return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(value = Exception.class)
+    public ResponseEntity<ErrorResponseDTO> handleException(Exception exception) {
+        log.error(exception.getMessage());
+        ErrorResponseDTO response = new ErrorResponseDTO(ErrorMessage.UNEXPECTED_ERROR.getMessage());
+        return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
     }
 }
