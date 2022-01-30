@@ -1,6 +1,5 @@
 package com.n11.graduation.cs.controller.application;
 
-import com.n11.graduation.cs.dto.application.ApplicationCheckRequestDTO;
 import com.n11.graduation.cs.dto.application.ApplicationRequestDTO;
 import com.n11.graduation.cs.dto.application.ApplicationResponseDTO;
 import com.n11.graduation.cs.helper.ApplicationHelper;
@@ -54,11 +53,9 @@ class ApplicationControllerTest {
         String identityNumber = "12345678901";
         LocalDate birthDate = LocalDate.of(1990, 1, 1);
 
-        ApplicationCheckRequestDTO applicationCheckRequestDTO = new ApplicationCheckRequestDTO(identityNumber, birthDate);
-
         when(applicationService.getApplicationByIdentityNumberAndBirthDate(identityNumber, birthDate)).thenReturn(expectedBody);
 
-        ResponseEntity<List<ApplicationResponseDTO>> actualResponseEntity = applicationController.getApplicationByIdentityNumberAndBirthDate(applicationCheckRequestDTO);
+        ResponseEntity<List<ApplicationResponseDTO>> actualResponseEntity = applicationController.getApplicationByIdentityNumberAndBirthDate(identityNumber, birthDate);
 
         assertEquals(HttpStatus.OK, actualResponseEntity.getStatusCode());
 

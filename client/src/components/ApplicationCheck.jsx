@@ -26,10 +26,7 @@ const ApplicationCheck = (props) => {
   const handleResultList = async () => {
     var result = [];
     await api
-      .post("applications/check", {
-        identityNumber: identity,
-        birthDate: birthDate,
-      })
+      .get("applications/user/" + identity + "?birthDate=" + birthDate)
       .then((response) => {
         response.map((e) => {
           result.push({
